@@ -13,3 +13,10 @@ after_success:
   - docker build -t erimerdal/multi-nginx ./nginx
   - docker build -t erimerdal/multi-server ./server
   - docker build -t erimerdal/multi-worker ./worker
+  # Log in to docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take those images and push to docker hub
+  - docker push erimerdal/multi-client
+  - docker push erimerdal/multi-nginx
+  - docker push erimerdal/multi-server
+  - docker push erimerdal/multi-worker
